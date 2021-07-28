@@ -32,9 +32,9 @@ if __name__ == "__main__":
 def tid_siden_midnatt(liste):
     timer_e_midnatt = []
     minutter_e_midnatt = []
-    
+
+
     for i in liste:
-        
         
         tid = i[1]
         tid_splitted = tid.split(" ")
