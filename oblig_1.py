@@ -1,54 +1,24 @@
-# -*- coding: utf-8 -*-
+import math as m
 
-"""
-Created on Thu Feb 18 10:20:52 2021
+# a)
+B = 50000
+k = 0.2
+t = 0
 
-"""
-
-__author__ = "Idris Omar"
-__email__ = "mohammed.idris.omar@nmbu.no"
-
-
-rhList = [[4.276, 7.000], [4.000, 8.000], [3.771, 9.000],
-          [4.443, 3.142], [3.142, 6.284], [2.565, 9.425], [2.221, 12.566]]
-
-# A. Lagre resultatene for O og V her
-resultList = []
-
-from math import pi
-
-r = []
-h = []
-
-for k in rhList:
-    r.append(k[0])
-    h.append(k[1])
-    
-    
-#  B. beregner O og V 
-overflate_O = [(2 * pi * r ** 2) + (2 * pi * r * h) for r, h in rhList]
-volum_V = [pi * r ** 2 * h for r, h in rhList]
-
-# C. skriver ut r, h, O og V på skjermen med tre desimalers nøyaktighet
-# D. lagrer r, h, O og V i en liste som heter resultList. Denne listen er også nøstet (nested) og ser slik ut når programmet er ferdig kjørt
-for r, h, O, V in zip(r, h, overflate_O, volum_V):
-    resultList.append([r, h, O, V])
-    print('{0:.3f}, {1:.3f}, {2:.3f}, {3:.3f}'.format(r, h, O, V))
-print(resultList)
-
-"""
-Deretter anslå du hvor mye større h bør være enn r
-for å få best mulig utnyttelse av råmaterialene 
-(størst mulig volum i forhold til overflate). 
-Vi er ikke interessert i en analytisk løsning, 
-kun et anslag ut fra beregningene du gjør.
-
-Svar:
-    For at vi skal få mest mulig råmaterie altså størst mulig volum i forhold 
-    til overflate må h være dobbelt så stor som r.
-    
-"""
+N_5k = [(B/(1+C*m.e**(-k*t)), C) if B/(1+C*m.e**(-k*t)) == 5000 else "not" for C in range(1, 10)]
+print("N = {}, when C = {}".format(N_5k[-1][0], N_5k[-1][1]))
 
 
+# b)
 
-    
+# From task a we know that C is 9 when N is 5000.
+
+C = 9
+t = 24
+N_24 = B/(1+C*m.e**(-k*t))
+print("Population after 24 hours is {}".format(N_24))
+
+# c)
+
+N_90_rough_estimate = [(B / (1 + C * m.e ** (-k * t)), t) if 45100 >= B / (1 + C * m.e ** (-k * t)) >= 44900 else t for t in range(1, 25)]
+print("after about {} hours the population has reached {} which is almost 90% of B".format(N_90_rough_estimate[-3][1], N_90_rough_estimate[-3][0]))
